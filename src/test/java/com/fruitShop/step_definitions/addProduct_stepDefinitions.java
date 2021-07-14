@@ -145,7 +145,7 @@ addProduct.put("name","fruit of the holy spirit");
     public void user_is_able_to_verify_the_new() {
 
         String Name = given().
-                log().all().
+              //  log().all().
                 accept(JSON).
                 pathParam("id", productId).
                 when()
@@ -154,7 +154,7 @@ addProduct.put("name","fruit of the holy spirit");
                 .jsonPath().getString("name");
         System.out.println("Name = " + Name);
         Double price= given().
-                log().all().
+              //  log().all().
                 accept(JSON).
                 pathParam("id", productId).
                 when()
@@ -192,7 +192,7 @@ addProduct.put("name","fruit of the holy spirit");
             "  \"name\": \"Fruit of the Spirit for AFCW\",\n" +
             "  \"price\": 1000.99,\n" +
             "  \"category_url\": \"/shop/categories/Fruits\",\n" +
-            "  \"vendor_url\": \"/shop/vendors/672\"\n" +
+            "  \"vendor_url\": \"/shop/vendors/817\"\n" +
             "}";
 ProductPojo bodyPojo=new ProductPojo("mini Fruit",100.99,"/shop/categories/Fruits","/shop/vendors/819");
 
@@ -244,8 +244,13 @@ ProductPojo bodyPojo=new ProductPojo("mini Fruit",100.99,"/shop/categories/Fruit
                 get("/products/{id}").
                 then().extract().jsonPath();
 
+        //then()
+        // .body("price",is(5.99f));
+
       String updatedName= js.getString("name");
       Double updatedPrice=js.getDouble("price");
+
+
 
         System.out.println("updatedPrice = " + updatedPrice);
         System.out.println("updatedName = " + updatedName);
@@ -265,6 +270,16 @@ ProductPojo bodyPojo=new ProductPojo("mini Fruit",100.99,"/shop/categories/Fruit
             }
         }
         System.out.println("vendorId = " + vendorId);
+
+
+
+
+
+//private static final double DELTA=1e-15;====>goes to global variable
+//Assert.assertArrayEquals(jsonpath.getDouble("price"),5.99,DELTA);
+//
+
+
 
 
     }
